@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "8215243f-9927-462f-b3c8-ac095363f790",
+		"name": "Task_2(4,5)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "4New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"}); \r",
+							"var jsoneData = JSON.parse(responseBody);\r",
+							"var resp_salary = jsoneData.salary[0];\r",
+							"console.log(\"resp_salary = \", resp_salary);\r",
+							"var resp_salary2 = jsoneData.salary[1];\r",
+							"var resp_salary3 = jsoneData.salary[2];\r",
+							"var request_data = pm.request.url.toJSON();\r",
+							"console.log(\"request_data = \", request_data);\r",
+							"var req_query = request_data.query;\r",
+							"console.log(\"req_query = \", req_query[1].value);\r",
+							"var req_salary = (req_query[1].value)\r",
+							"\r",
+							"var req_salary2= req_salary * 2\r",
+							"var req_salary3 = req_salary * 3\r",
+							"pm.test(\"resp_salary = req_salary\", function () {\r",
+							"   pm.expect(resp_salary).to.eql(parseInt(req_salary));\r",
+							"});\r",
+							"pm.test(\"resp_salary2 = req_salary2\", function () {\r",
+							"   pm.expect(parseInt(resp_salary2)).to.eql(parseInt(req_salary2));\r",
+							"});\r",
+							"pm.test(\"resp_salary = req_salary\", function () {\r",
+							"   pm.expect(parseInt(resp_salary3)).to.eql(parseInt(req_salary3));\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://116.203.27.46:5002/object_info_4?age=31&salary=500&name=Kate",
+					"protocol": "http",
+					"host": [
+						"116",
+						"203",
+						"27",
+						"46"
+					],
+					"port": "5002",
+					"path": [
+						"object_info_4"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "31"
+						},
+						{
+							"key": "salary",
+							"value": "500"
+						},
+						{
+							"key": "name",
+							"value": "Kate"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var jsoneData = JSON.parse(responseBody);\r",
+							"var request_data = request.data;\r",
+							"var req_weight = request_data.weight;\r",
+							"var resp_daily_food = jsoneData.daily_food;\r",
+							"var resp_daily_food2 = resp_daily_food;\r",
+							"var req_daily_food = req_weight *  0.012;\r",
+							"var req_daily_food2 = ( req_daily_food.toFixed(18));\r",
+							"\r",
+							"var resp_daily_sleep = jsoneData.daily_sleep;\r",
+							"var resp_daily_sleep2 = resp_daily_sleep;\r",
+							"var req_daily_sleep = req_weight *  2.5;\r",
+							"var req_daily_sleep2 = ( req_daily_sleep.toFixed(1));\r",
+							"\r",
+							"pm.test(\"resp_daily_food2 = req_daily_food2\", function () {\r",
+							"   pm.expect(resp_daily_food2).to.eql(parseFloat(req_daily_food2));\r",
+							"});\r",
+							"console.log(req_daily_food2)\r",
+							"\r",
+							"pm.test(\"resp_daily_sleep2 = req_daily_sleep\", function () {\r",
+							"   pm.expect(resp_daily_sleep2).to.eql(parseFloat(req_daily_sleep));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "6",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "3",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Poly",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://116.203.27.46:5002/user_info_1",
+					"protocol": "http",
+					"host": [
+						"116",
+						"203",
+						"27",
+						"46"
+					],
+					"port": "5002",
+					"path": [
+						"user_info_1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
